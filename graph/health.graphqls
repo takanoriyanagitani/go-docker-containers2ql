@@ -1,0 +1,19 @@
+type HealthcheckResult {
+  start: String!
+  end: String!
+  exitCode: Int!
+  output: String!
+}
+
+enum HealthStatus {
+  NONE
+  STARTING
+  HEALTHY
+  UNHEALTHY
+}
+
+type Health {
+  status: HealthStatus!
+  failingStreak: Int!
+  log: [HealthcheckResult!]!
+}

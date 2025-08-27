@@ -1,0 +1,38 @@
+enum ContainerState {
+  UNSPECIFIED
+  CREATED
+  RUNNING
+  PAUSED
+  RESTARTING
+  REMOVING
+  EXITED
+  DEAD
+}
+
+type BasicInfoOutput {
+  id: ID!
+  names: [String!]!
+  image: String!
+  imageID: String!
+  command: String!
+  created: Int!
+  state: ContainerState!
+  status: String!
+  health: Health
+}
+
+input BasicInfoInput {
+  all: Boolean! = false
+  limit: Int
+  size: Boolean! = false
+  exited: Int
+  health: HealthStatus
+  id: ID
+  name: String
+  network: String
+  status: ContainerState
+}
+
+type Query {
+  basicInfo(input: BasicInfoInput): [BasicInfoOutput]!
+}
